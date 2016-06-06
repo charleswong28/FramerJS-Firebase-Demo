@@ -2,7 +2,7 @@
 Realtime chat app prototype using FramerJS and Firebase<br />
 **Demo - <a href="http://share.framerjs.com/yfvlcjc617hh/" target="_blank">here</a>**<br />
 
-## Get Started
+## Getting Started
 1. Download Sketch (<a href="https://www.sketchapp.com/" target="_blank">here</a>) **Mac Only**<br />
 2. Download FramerJS Studio (<a href="http://framerjs.com/" target="_blank">here</a>) **Mac Only**<br />
 3. Download Sketch resource file for this demo (<a href="https://www.dropbox.com/s/3nvobcd8oqbdu8z/WID2016_FramerJS_Resources.zip?dl=0" target="_blank">here</a>) <br />
