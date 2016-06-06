@@ -70,6 +70,29 @@ Views = new ViewController
     initialView: sketch.homeScreen
 ```
 
+### TextInput Inside chatroom
+```coffeescript
+chatInput = new InputModule.Input
+		text: ""
+		placeholder: "Your message"
+		placeholderColor: "#aaa"
+		type: "text"
+		y: 14
+		x: 28
+		width: 588
+		height: 48
+		virtualKeyboard: false
+		parent: sketch.chatroomBottomBar
+
+chatInput.style =
+	fontFamily: "Helvetica Neue"
+	fontWeight: 300
+	fontSize: "23px"
+	lineHeight: "23px"
+	
+chatInput.visible = false
+```
+
 ##### Go button eventlistener
 ```coffeescript
 sketch.goBtn.onTap -> 
@@ -84,7 +107,6 @@ sketch.chatScreenBackButton.onTap ->
 	chatInput.visible = false
 	nameInput.visible = true
 	Views.back()
-	
 ```
 
 ** The reason for not using <a href="https://github.com/awt2542/ViewController-for-Framer#--autolink" target="_blank">autoLink</a> is that we need to control the display state of inputs 
@@ -113,17 +135,112 @@ sketch.sendBtn.onTap ->
 
 Please do **NOT** use this demo database for other projects. Your data will be deleted. 
 
-##### Check your message here 
-**TODO: Check this**
+##### Check your message here (For testing)
 ```coffeescript
 response = (messages) ->
     messagesArray = _.toArray(messages)
-    print message for message in messages
+    print message for key, message of messages
 
-firebase.get("/messages",response,{limitToFirst: 10})
+firebase.get("/messages",response,{orderBy: "created_at", limitToFirst: 10})
 ```
 
-## TODO: Make message container scrollable
+## Make message container scrollable
+```coffeescript
+scroll = ScrollComponent.wrap(sketch.chatroomContent)
+scroll.scrollHorizontal = false
+scroll.contentInset =
+    top: 0
+    right: 0
+    bottom: 20
+    left: 0
+```
 
-## TODO: Message View with textLayer-for-Framer
-https://github.com/awt2542/textLayer-for-Framer
+## Message View with textLayer-for-Framer (<a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/textLayer-for-Framer" target="_blank">textLayer-for-Framer</a>)
+Framer.js module that simplifies the process of adding text to your prototypes.
+
+##### Add it in your Framer Studio project
+1. Download the project from <a href="https://github.com/awt2542/textLayer-for-Framer/archive/master.zip" target="_blank">github</a>.
+2. Copy TextLayer.coffee into modules/ folder.
+
+#### Initalize
+```coffeescript
+{TextLayer} = require 'TextLayer'
+```
+
+##### Function to generate view 
+```coffeescript
+# Common function
+getInMessageView = (y, message) ->
+	layer = sketch.inMessage.copy()
+	
+	content = sketch.inMessageContent.convertToTextLayer()
+	content.fontFamily = "Helvetica"
+	content.fontWeight = 100
+	content.autoSize = true
+	content.parent = layer
+	content.text = message.message || ""
+	content.x = 119
+	content.y = Align.top
+	content.width = 571
+	content.color = "#333"
+	
+	name = sketch.inMessageName.convertToTextLayer()
+	name.fontFamily = "Helvetica"
+	name.fontWeight = 100
+	name.autoSize = true
+	name.parent = layer
+	name.text = message.name || ""
+	name.x = (89 - name.width) / 2
+	name.y = Align.bottom()
+	name.color = "#999"
+	
+	layer.x = 30
+	layer.y = y
+	layer.visible = true
+	
+	sketch.chatroomContent.addSubLayer(layer)
+	return layer
+```
+
+##### Change go button eventlistener to listen to changes in "/messages"
+```coffeescript
+inMessages = []
+sketch.goBtn.onClick -> 
+	if nameInput.value.length > 0
+		for inMessage in inMessages
+			inMessage.destroy()
+		
+		Views.pushInRight(sketch.chatroomScreen)
+		chatInput.visible = true
+		nameInput.visible = false
+		chatroomHeight = 0
+		
+		addInMessageView = (message) ->
+			layer = getInMessageView(chatroomHeight + 60, message)
+			chatroomHeight += layer.height + 60
+			scroll.scrollToLayer layer
+			inMessages.push layer
+		
+		response = (data, method, path, breadcrumbs) ->
+			if data
+				if path == "/"
+					for key, message of data
+						addInMessageView(message)
+				else 
+					addInMessageView(data)
+		
+		firebase.onChange("/messages", response)
+
+	sketch.inMessage.visible = false
+	sketch.inMessageContent.visible = false
+	sketch.inMessageName.visible = false
+```
+
+## Contact
+Twitter: <a href="https://twitter.com/silverchung28" target="_blank">@silverchung28</a><br />
+Email: charles@eoniq.co
+
+## Credits
+##### @ajimix (<a href="https://github.com/ajimix" target="_blank">ajimix</a>/<a href="https://github.com/ajimix/Input-Framer" target="_blank">Input-Framer</a>)
+##### @awt2542 (<a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/ViewController-for-Framer" target="_blank">ViewController-for-Framer</a>, <a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/textLayer-for-Framer" target="_blank">textLayer-for-Framer</a>)
+##### @marckrenn (<a href="https://github.com/marckrenn" target="_blank">marckrenn</a>/<a href="https://github.com/marckrenn/framer-Firebase" target="_blank">framer-Firebase</a>)
