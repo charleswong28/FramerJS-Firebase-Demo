@@ -15,7 +15,8 @@ Realtime chat app prototype using FramerJS and Firebase<br />
 **TODO: GIF HERE**<br />
 
 ## Input Module for FramerJS (<a href="https://github.com/ajimix" target="_blank">ajimix</a>/<a href="https://github.com/ajimix/Input-Framer" target="_blank">Input-Framer</a>)
-Framer module to easily turn your designs inputs into real inputs.
+
+> Framer module to easily turn your designs inputs into real inputs.
 
 ##### Add it in your Framer Studio project
 1. Download the project from <a href="https://github.com/ajimix/Input-Framer/archive/master.zip" target="_blank">github</a>.
@@ -57,7 +58,7 @@ nameInput.on "keyup", ->
 
 ## View Controller for FramerJS (<a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/ViewController-for-Framer" target="_blank">ViewController-for-Framer</a>)
 
-The ViewController module for Framer.js helps you create multi step user flows with pre-made transitions like "fade in", "zoom in" and "slide in". It consists of a Framer module and an optional [Sketch plugin](#sketch). Check out the intro article on [Medium](https://uxdesign.cc/create-ui-flows-using-sketch-and-framer-36b6552306b5#.4j5idvu0r).
+> The ViewController module for Framer.js helps you create multi step user flows with pre-made transitions like "fade in", "zoom in" and "slide in". It consists of a Framer module and an optional [Sketch plugin](#sketch). Check out the intro article on [Medium](https://uxdesign.cc/create-ui-flows-using-sketch-and-framer-36b6552306b5#.4j5idvu0r).
 
 ##### Add it in your Framer Studio project
 1. Download the project from <a href="https://github.com/awt2542/ViewController-for-Framer/archive/master.zip" target="_blank">github</a>.
@@ -109,13 +110,13 @@ sketch.chatScreenBackButton.onTap ->
 	Views.back()
 ```
 
-** The reason for not using <a href="https://github.com/awt2542/ViewController-for-Framer#--autolink" target="_blank">autoLink</a> is that we need to control the display state of inputs 
+**The reason for not using <a href="https://github.com/awt2542/ViewController-for-Framer#--autolink" target="_blank">autoLink</a> is that we need to control the display state of inputs 
 
 **TODO: GIF HERE**<br />
 
 ## Supercharge with FireBase (<a href="https://github.com/marckrenn" target="_blank">marckrenn</a>/<a href="https://github.com/marckrenn/framer-Firebase" target="_blank">framer-Firebase</a>)
 
-The **Firebase module** allows your Framer prototype to **load**, **save** and **sync** data effortlessly between multiple sessions and devices. 
+> The **Firebase module** allows your Framer prototype to **load**, **save** and **sync** data effortlessly between multiple sessions and devices. 
 
 ##### Add it in your Framer Studio project
 1. Download the project from <a href="https://github.com/marckrenn/framer-Firebase/archive/master.zip" target="_blank">github</a>.
@@ -156,7 +157,8 @@ scroll.contentInset =
 ```
 
 ## Message View with textLayer-for-Framer (<a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/textLayer-for-Framer" target="_blank">textLayer-for-Framer</a>)
-Framer.js module that simplifies the process of adding text to your prototypes.
+
+> Framer.js module that simplifies the process of adding text to your prototypes.
 
 ##### Add it in your Framer Studio project
 1. Download the project from <a href="https://github.com/awt2542/textLayer-for-Framer/archive/master.zip" target="_blank">github</a>.
