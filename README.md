@@ -60,7 +60,7 @@ nameInput.on "keyup", ->
 	sketch.goBtn.opacity = if @value.length > 0 then 1 else 0.5
 ```
 
-**TODO: GIF HERE**<br />
+![Home Screen](http://f.cl.ly/items/0M062x3o023o1k321Z1S/dc3088f5-50c7-4835-a7c9-107305e2410d.gif)
 
 <br />
 
@@ -78,6 +78,7 @@ ViewController = require 'ViewController'
 Views = new ViewController
     initialView: sketch.homeScreen
 ```
+**Note that this should be initalized before binding text input**
 
 ##### TextInput Inside chatroom
 ```coffeescript
@@ -118,9 +119,9 @@ sketch.chatScreenBackButton.onTap ->
 	Views.back()
 ```
 
-**The reason for not using <a href="https://github.com/awt2542/ViewController-for-Framer#--autolink" target="_blank">autoLink</a> is that we need to control the display state of inputs 
+**The reason for not using <a href="https://github.com/awt2542/ViewController-for-Framer#--autolink" target="_blank">autoLink</a> is that we need to control the display state of inputs**
 
-**TODO: GIF HERE**<br />
+![chatroom screen](http://f.cl.ly/items/1e3G2t383q183o3d0c2Z/fea2745e-5040-4f8d-a68e-192a0f52112d.gif)
 
 <br />
 
@@ -134,13 +135,15 @@ sketch.chatScreenBackButton.onTap ->
 
 ##### Initialize
 ```coffeescript
+{Firebase} = require 'firebase'
+
 firebase = new Firebase
 	projectID: "project-8070018445052938302"
 	secret: "TWDpxeHTLmcW84DFQY7X2YmI0UKZsmeZESTJDhFY"
 	server: "s-usc1c-nss-136.firebaseio.com"
 	
 sketch.sendBtn.onTap ->
-	firebase.post("/messages", {name: nameInput.value, message: chatInput.value}, () -> chatInput.value = "")
+	firebase.post("/messages", {name: nameInput.value, message: chatInput.value, created_at: new Date()}, () -> chatInput.value = "")
 
 ```
 
@@ -153,17 +156,6 @@ response = (messages) ->
     print message for key, message of messages
 
 firebase.get("/messages",response,{orderBy: "created_at", limitToFirst: 10})
-```
-
-##### Make message container scrollable
-```coffeescript
-scroll = ScrollComponent.wrap(sketch.chatroomContent)
-scroll.scrollHorizontal = false
-scroll.contentInset =
-    top: 0
-    right: 0
-    bottom: 20
-    left: 0
 ```
 
 <br />
@@ -179,6 +171,17 @@ scroll.contentInset =
 #### Initalize
 ```coffeescript
 {TextLayer} = require 'TextLayer'
+```
+
+##### Make message container scrollable
+```coffeescript
+scroll = ScrollComponent.wrap(sketch.chatroomContent)
+scroll.scrollHorizontal = false
+scroll.contentInset =
+    top: 0
+    right: 0
+    bottom: 20
+    left: 0
 ```
 
 ##### Function to generate view 
