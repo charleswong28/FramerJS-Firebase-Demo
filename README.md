@@ -2,17 +2,23 @@
 Realtime chat app prototype using FramerJS and Firebase<br />
 **Demo - <a href="http://share.framerjs.com/yfvlcjc617hh/" target="_blank">here</a>**<br />
 
+<br />
+
 ## Getting Started
 1. Download Sketch (<a href="https://www.sketchapp.com/" target="_blank">here</a>) **Mac Only**<br />
 2. Download FramerJS Studio (<a href="http://framerjs.com/" target="_blank">here</a>) **Mac Only**<br />
 3. Download Sketch resource file for this demo (<a href="https://www.dropbox.com/s/3nvobcd8oqbdu8z/WID2016_FramerJS_Resources.zip?dl=0" target="_blank">here</a>) <br />
 4. (Optional) Clone this project to check the source code<br />
 
-## Import from Sketch3
+<br />
+
+## Import from Sketch
 1. Open the Sketch resource file you downloaded<br />
 2. Open a new FramerJS project <br />
 3. Press &#8984; + ⇧ + i <br />
-**TODO: GIF HERE**<br />
+
+![Import from Sketch](http://f.cl.ly/items/1l0U0O0G0S3w3J3D1m3i/4f1965bf-ff8f-4044-8276-4613ba52e938.gif)
+<br />
 
 ## Input Module for FramerJS (<a href="https://github.com/ajimix" target="_blank">ajimix</a>/<a href="https://github.com/ajimix/Input-Framer" target="_blank">Input-Framer</a>)
 
@@ -56,6 +62,8 @@ nameInput.on "keyup", ->
 
 **TODO: GIF HERE**<br />
 
+<br />
+
 ## View Controller for FramerJS (<a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/ViewController-for-Framer" target="_blank">ViewController-for-Framer</a>)
 
 > The ViewController module for Framer.js helps you create multi step user flows with pre-made transitions like "fade in", "zoom in" and "slide in". It consists of a Framer module and an optional [Sketch plugin](#sketch). Check out the intro article on [Medium](https://uxdesign.cc/create-ui-flows-using-sketch-and-framer-36b6552306b5#.4j5idvu0r).
@@ -71,7 +79,7 @@ Views = new ViewController
     initialView: sketch.homeScreen
 ```
 
-### TextInput Inside chatroom
+##### TextInput Inside chatroom
 ```coffeescript
 chatInput = new InputModule.Input
 		text: ""
@@ -114,6 +122,8 @@ sketch.chatScreenBackButton.onTap ->
 
 **TODO: GIF HERE**<br />
 
+<br />
+
 ## Supercharge with FireBase (<a href="https://github.com/marckrenn" target="_blank">marckrenn</a>/<a href="https://github.com/marckrenn/framer-Firebase" target="_blank">framer-Firebase</a>)
 
 > The **Firebase module** allows your Framer prototype to **load**, **save** and **sync** data effortlessly between multiple sessions and devices. 
@@ -145,7 +155,7 @@ response = (messages) ->
 firebase.get("/messages",response,{orderBy: "created_at", limitToFirst: 10})
 ```
 
-## Make message container scrollable
+##### Make message container scrollable
 ```coffeescript
 scroll = ScrollComponent.wrap(sketch.chatroomContent)
 scroll.scrollHorizontal = false
@@ -155,6 +165,8 @@ scroll.contentInset =
     bottom: 20
     left: 0
 ```
+
+<br />
 
 ## Message View with textLayer-for-Framer (<a href="https://github.com/awt2542" target="_blank">awt2542</a>/<a href="https://github.com/awt2542/textLayer-for-Framer" target="_blank">textLayer-for-Framer</a>)
 
@@ -237,10 +249,13 @@ sketch.goBtn.onClick ->
 	sketch.inMessageContent.visible = false
 	sketch.inMessageName.visible = false
 ```
+<br />
 
 ## Contact
 Twitter: <a href="https://twitter.com/silverchung28" target="_blank">@silverchung28</a><br />
 Email: charles@eoniq.co
+
+<br />
 
 ## Credits
 ##### @ajimix (<a href="https://github.com/ajimix" target="_blank">ajimix</a>/<a href="https://github.com/ajimix/Input-Framer" target="_blank">Input-Framer</a>)
