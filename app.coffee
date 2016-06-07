@@ -118,7 +118,7 @@ chatInput.style =
 	lineHeight: "23px"
 
 sketch.sendBtn.onTap ->
-	firebase.post("/messages", {name: nameInput.value, message: chatInput.value}, () -> chatInput.value = "")
+	firebase.post("/messages", {name: nameInput.value, message: chatInput.value, created_at: new Date()}, () -> chatInput.value = "")
 	
 sketch.chatScreenBackButton.onTap ->
 	chatInput.visible = false
