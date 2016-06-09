@@ -2,6 +2,8 @@
 Realtime chat app prototype using FramerJS and Firebase<br />
 **Demo - <a href="http://share.framerjs.com/yfvlcjc617hh/" target="_blank">here</a>**<br />
 
+![DEMO](http://f.cl.ly/items/1L14123l3w213v1x1G0O/output_c2pjL6.gif)
+
 <br />
 
 ## Getting Started
